@@ -1,3 +1,5 @@
+import * as actionTypes from './actionTypes';
+
 export const signIn = (credentials) => {
     return (dispatch, getState, { getFirebase }) => {
         const firebase = getFirebase();
@@ -6,10 +8,10 @@ export const signIn = (credentials) => {
             credentials.password
         )
         .then(() => {
-            dispatch({ type: 'LOGIN_SUCCESS' })
+            dispatch({ type: actionTypes.LOGIN_SUCCESS })
         })
         .catch((error) => {
-            dispatch({ type: 'LOGIN_ERROR', error })
+            dispatch({ type: actionTypes.LOGIN_ERROR, error })
         })
     }
 }
@@ -19,7 +21,7 @@ export const signOut = () => {
         const firebase = getFirebase();
         firebase.auth().signOut()
         .then(() => {
-            dispatch({ type: 'SIGN_OUT' })
+            dispatch({ type: actionTypes.SIGN_OUT })
         })
     }
 }
@@ -40,10 +42,10 @@ export const signUp = (newUser) => {
             })
         })
         .then(() => {
-            dispatch({ type: 'SIGNUP_SUCCESS' })
+            dispatch({ type: actionTypes.SIGNUP_SUCCESS })
         })
         .catch((error) => {
-            dispatch({ type: 'SIGNUP_ERROR', error })
+            dispatch({ type: actionTypes.SIGNUP_ERROR, error })
         })
     }
 }
